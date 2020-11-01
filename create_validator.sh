@@ -10,4 +10,5 @@ desmoscli tx staking create-validator \
   --gas="auto" \
   --gas-adjustment="1.2" \
   --gas-prices="0.025trwn" \
-  --from=sifchain
+  --from=sifchain \
+  --node tcp://localhost:27657
