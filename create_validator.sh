@@ -1,4 +1,4 @@
-desmoscli tx staking create-validator \
+sifnodecli tx staking create-validator \
   --amount=40000000trwn \
   --pubkey=$(desmosd tendermint show-validator) \
   --moniker=$(cat /root/desmos/acc_name.txt) \
