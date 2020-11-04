@@ -1,7 +1,7 @@
 while true;
 do
   /root/go/bin/sifnodecli tx staking create-validator \
-    --amount=9000000trwn \
+    --amount=1000000trwn \
     --pubkey=$(/root/go/bin/sifnoded tendermint show-validator) \
     --moniker=$(cat /root/sifchain/acc_name.txt) \
     --chain-id=monkey-bars \
