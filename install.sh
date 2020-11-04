@@ -11,6 +11,9 @@ apt update \
   && apt install -y zip git unzip make gcc build-essential jq
 
 
+systemctl stop $PROJECT_NAME
+rm -rf $HOME/.$NODED $HOME/.$CLI
+  
 echo "---> COMPILE BINARY FILES"
 mkdir ~/$PROJECT_NAME; \
 cd ~/$PROJECT_NAME; \
