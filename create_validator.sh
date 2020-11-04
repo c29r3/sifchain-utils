@@ -1,8 +1,8 @@
 while true;
 do
-  sifnodecli tx staking create-validator \
+  /root/bin/sifnodecli tx staking create-validator \
     --amount=9000000trwn \
-    --pubkey=$(sifnoded tendermint show-validator) \
+    --pubkey=$(/root/bin/sifnoded tendermint show-validator) \
     --moniker=$(cat /root/sifchain/acc_name.txt) \
     --chain-id=monkey-bars \
     --commission-rate="0.10" \
