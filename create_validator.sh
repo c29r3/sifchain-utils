@@ -1,7 +1,7 @@
 sifnodecli tx staking create-validator \
-  --amount=40000000trwn \
+  --amount=9000000trwn \
   --pubkey=$(sifnoded tendermint show-validator) \
-  --moniker=c29r3 \
+  --moniker=$(cat /root/sifchain/acc_name.txt) \
   --chain-id=monkey-bars \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
@@ -10,5 +10,6 @@ sifnodecli tx staking create-validator \
   --gas="auto" \
   --gas-adjustment="1.2" \
   --gas-prices="0.025trwn" \
-  --from=weathered-pine \
+  --from=sifchain \
+  --yes \
   --node tcp://localhost:27657
