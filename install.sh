@@ -44,7 +44,7 @@ $BIN_PATH/$CLI config keyring-backend test
 $BIN_PATH/$CLI config chain-id $CHAIN_ID
 
 echo "Generating new key"
-echo "yes\n" | $BIN_PATH/$CLI keys add $PROJECT_NAME --keyring-backend test -o json &> $HOME/$PROJECT_NAME/$PROJECT_NAME_key.json
+echo "yes\n" | $BIN_PATH/$CLI keys add $PROJECT_NAME --keyring-backend test -o json &> $HOME/$PROJECT_NAME/$PROJECT_NAME\_$MONIKER\_key.json
 
 cat $HOME/$PROJECT_NAME/$PROJECT_NAME_key.json | jq -r .
 
