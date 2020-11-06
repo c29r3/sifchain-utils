@@ -13,9 +13,9 @@ while true;
 do
     BALANCE=$($BIN_FILE query account $SELF_ADDR -o json --node tcp://localhost:27657 | jq -r .value.coins[0].amount)
     echo CURRENT BALANCE IS: $BALANCE
-    REWARD=$(( $BALANCE - 200000 ))
+    REWARD=$(( $BALANCE - 1000000 ))
 
-    if (( $BALANCE >  899999 )); then
+    if (( $BALANCE >  3000000 )); then
         echo "Let's delegate $REWARD of REWARD tokens to $SELF_ADDR"
         # delegate balance
         $BIN_FILE tx staking delegate $OPERATOR "$REWARD"$DENOM --chain-id $CHAIN_ID --node tcp://localhost:27657 --gas-adjustment 1.5 --gas="200000" --fees 7500$DENOM --from $WALLET_NAME -y
