@@ -11,7 +11,7 @@ echo -e "Current address: $SELF_ADDR\nCurrent operator address: $OPERATOR"
 
 while true;
 do
-    BALANCE=$($BIN_FILE query account $SELF_ADDR -o json --node tcp://localhost:27657 | jq -r .value.coins[0].amount)
+    BALANCE=$($BIN_FILE query account $SELF_ADDR -o json --node tcp://localhost:27657 | jq -r .value.coins[4].amount)
     echo CURRENT BALANCE IS: $BALANCE
     REWARD=$(( $BALANCE - 1000000 ))
 
