@@ -4,7 +4,7 @@ BIN_FILE="/root/go/bin/sifnodecli"
 WALLET_NAME="sifchain"
 CHAIN_ID="monkey-bars"
 SELF_ADDR=$($BIN_FILE keys list -o json | jq -r .[0].address)
-DENOM="trwn"
+DENOM="rowan"
 OPERATOR=$($BIN_FILE q staking delegations --chain-id $CHAIN_ID -o json --node tcp://localhost:27657 $SELF_ADDR | jq -r .[].validator_address)
 
 echo -e "Current address: $SELF_ADDR\nCurrent operator address: $OPERATOR"
