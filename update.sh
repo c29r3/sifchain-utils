@@ -4,10 +4,10 @@ NEW_PEERS="ec03640d0dcb1160f8cf73c33c63b64a55c93906@35.166.247.98:26656,04fad3ab
 
 systemctl stop sifchain; \
 cd /root/sifchain/sifnode; \
-git pull; \
-git checkout tags/monkey-bars-testnet-4; \
-make install; \
-sifnoded unsafe-reset-all; \
+/usr/bin/git pull; \
+/usr/bin/git checkout tags/monkey-bars-testnet-4; \
+/usr/bin/make install; \
+/root/go/bin/sifnoded unsafe-reset-all; \
 wget -O /root/.sifnoded/config/genesis.json https://raw.githubusercontent.com/Sifchain/networks/feature/genesis/testnet/monkey-bars-testnet-4/genesis.json; \
 sed -i "s|persistent_peers = \"$OLD_PEERS\"|persistent_peers = \"$NEW_PEERS\"|g" /root/.sifnoded/config/config.toml; \
 systemctl start sifchain; \
