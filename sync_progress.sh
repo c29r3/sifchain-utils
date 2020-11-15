@@ -1,8 +1,7 @@
 #!/bin/bash
 
 GREEN="\e[92m"
-
-DEV_RPC="http://35.166.247.98:26657"
+DEV_RPC=$1
 RPC=$(awk -F'[ ="]+' '$1 == "laddr" { print $2 }' $HOME/.sifnoded/config/config.toml | head -n 1 | sed s'|tcp|http|g')
 SYNC_STATUS=$(curl -s $RPC/status | jq -r .result.sync_info.catching_up)
 
