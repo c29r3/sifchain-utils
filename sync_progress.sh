@@ -1,7 +1,6 @@
 #!/bin/bash
 
 GREEN="\e[92m"
-NORMAL="\e[39m"
 
 DEV_RPC="http://35.166.247.98:26657"
 RPC=$(awk -F'[ ="]+' '$1 == "laddr" { print $2 }' $HOME/.sifnoded/config/config.toml | head -n 1 | sed s'|tcp|http|g')
