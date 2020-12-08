@@ -2,7 +2,8 @@
 
 GREEN="\e[92m"
 DEV_RPC=$1
-RPC=$(awk -F'[ ="]+' '$1 == "laddr" { print $2 }' $HOME/.sifnoded/config/config.toml | head -n 1 | sed s'|tcp|http|g')
+RPC="http://localhost:26657"
+# RPC=$(awk -F'[ ="]+' '$1 == "laddr" { print $2 }' $HOME/.sifnoded/config/config.toml | head -n 1 | sed s'|tcp|http|g')
 SYNC_STATUS=$(curl -s $RPC/status | jq -r .result.sync_info.catching_up)
 
 while [[ "$SYNC_STATUS" != "false" ]]; do
