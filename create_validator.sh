@@ -1,5 +1,5 @@
 # MAINNET
-PSWD="12345678"
+PSWD=$1
 MONIKER="c29r3 | StakeTab"
 WALLET_NAME="sifchain"
 RPC="tcp://localhost:27657"
