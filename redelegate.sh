@@ -1,9 +1,9 @@
 #!/bin/bash
 
 BIN_FILE="/root/go/bin/sifnodecli"
-RPC_PORT="27657"
+RPC_PORT="26657"
 WALLET_NAME="sifchain"
-CHAIN_ID="merry-go-round"
+CHAIN_ID="sifchain"
 SELF_ADDR=$($BIN_FILE keys list -o json | jq -r .[0].address)
 DENOM="rowan"
 OPERATOR=$($BIN_FILE q staking delegations --chain-id $CHAIN_ID -o json --node tcp://localhost:$RPC_PORT $SELF_ADDR | jq -r .[].validator_address)
