@@ -1,5 +1,6 @@
 # MAINNET
 PROJECT_NAME="sifchain"
+BINARY_ZIP_LINK="https://github.com/Sifchain/sifnode/releases/download/mainnet-relayer-20210221063300/sifnoded-mainnet-relayer-20210221063300-linux-amd64.zip"
 MONIKER="c29r3 | StakeTab"
 CHAIN_ID="sifchain"
 BIN_PATH="$HOME/go/bin"
@@ -16,7 +17,7 @@ systemctl stop $PROJECT_NAME
 rm -rf $HOME/.$NODED $HOME/.$CLI
   
 echo "---> COMPILE BINARY FILES"
-wget https://github.com/Sifchain/sifnode/releases/download/mainnet-relayer-20210221063300/sifnoded-mainnet-relayer-20210221063300-linux-amd64.zip
+wget $BINARY_ZIP_LINK
 unzip sifnoded*zip
 mv sifnode* ~/go/bin
 rm sifnode*zip
