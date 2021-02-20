@@ -1,6 +1,6 @@
 # MAINNET
 PROJECT_NAME="sifchain"
-BINARY_ZIP_LINK="https://github.com/Sifchain/sifnode/releases/download/mainnet-relayer-20210221063300/sifnoded-mainnet-relayer-20210221063300-linux-amd64.zip"
+BINARY_ZIP_LINK="https://github.com/Sifchain/sifnode/releases/download/mainnet-20210217130000/sifnoded-mainnet-20210217130000-linux-amd64.zip"
 MONIKER="c29r3 | StakeTab"
 CHAIN_ID="sifchain"
 BIN_PATH="$HOME/go/bin"
