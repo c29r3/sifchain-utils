@@ -13,7 +13,7 @@ CHAT_ID=""
 PASSWD=""
 SUBJECT="SIFCHAIN"
 
-SELF_ADDR=$(echo -e "$PASSWD\n" | $CLI keys list --output json | jq -r .[0].address)
+SELF_ADDR=$(echo -e "$PASSWD\n" | $CLI keys list --output json --trust-node | jq -r .[0].address)
 
 while true; 
 do 
