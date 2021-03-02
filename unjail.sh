@@ -3,7 +3,7 @@
 WALLET_NAME=sifchain
 CHAIN_ID="sifchain"
 OPERATOR="sifvaloper1lj3rsayj4xtrhp2e3elv4nf7lazxty27rqgngn"
-CLI="/root/go/bin/sifnoded"
+CLI="/root/go/bin/sifnodecli"
 RPC="http://localhost:26657"
 COIN="rowan"
 # telegram bot token
