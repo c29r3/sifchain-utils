@@ -25,6 +25,7 @@ do
     chmod u+x $BIN_NAME
     SHASUM_OLD=$(shasum ${BIN_PATH}${BIN_NAME} | cut -d " " -f1)
     SHASUM_NEW=$(shasum ${BIN_NAME} | cut -d " " -f1)
+    echo -e "OLD: $SHASUM_OLD\nNEW: $SHASUM_NEW"
     
     if [[ $SHASUM_OLD != $SHASUM_NEW ]]
     then
