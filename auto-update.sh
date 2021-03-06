@@ -20,7 +20,7 @@ do
     echo -e "UPDATE LINK: $RES"
     
     cd /tmp
-    wget ${RES}
+    wget -q ${RES}
     unzip *zip
     chmod u+x $BIN_NAME
     SHASUM_OLD=$(shasum ${BIN_PATH}${BIN_NAME} | cut -d " " -f1)
