@@ -37,6 +37,7 @@ do
     else
       echo "Binary files are same"
       rm -f ${BIN_NAME}
+      sleep 60
     fi
     rm -f rm /tmp/${BIN_NAME}*zip*
   fi
