@@ -6,7 +6,7 @@ BIN_PATH="$HOME/go/bin/"
 
 
 check_for_update(){
-  CHECK_UPD=$(journalctl -u sifchain.service --since "30 seconds ago" | egrep  "UPGRADE" | head -n 1 | egrep -o "https://.*\.zip")
+  CHECK_UPD=$(journalctl -u ${SERVICE_NAME} --since "30 seconds ago" | egrep  "UPGRADE" | head -n 1 | egrep -o "https://.*\.zip")
   echo $CHECK_UPD
 }
 
