@@ -1,29 +1,37 @@
 #!/bin/bash
 
-BIN_FILE="/root/go/bin/sifnodecli"
-RPC_PORT="26657"
 WALLET_NAME="sifchain"
-CHAIN_ID="sifchain"
-SELF_ADDR=$($BIN_FILE keys list -o json | jq -r .[0].address)
-DENOM="rowan"
-OPERATOR=$($BIN_FILE q staking delegations --chain-id $CHAIN_ID -o json --node tcp://localhost:$RPC_PORT $SELF_ADDR | jq -r .[].validator_address)
+BIN_FILE="$HOME/go/bin/sifnoded"
+TOKEN="rowan"
+RPC="http://localhost:46657"
+TX_FEE="12000000000000000"
+CHAIN_ID=$(curl -s $RPC/status | jq -r .result.node_info.network)
+read -sp "Password: " WALLET_PWD
 
-echo -e "Current address: $SELF_ADDR\nCurrent operator address: $OPERATOR"
+SELF_ADDR=$(echo -e "$WALLET_PWD" | $BIN_FILE keys list --output json | jq -r ".[] | select(.name == \"$WALLET_NAME\").address")
+OPERATOR=$(echo -e "$WALLET_PWD" | $BIN_FILE keys show $WALLET_NAME --bech val --output json | jq -r .address)
 
-while true;
-do
-    BALANCE=$($BIN_FILE query account $SELF_ADDR -o json --node tcp://localhost:$RPC_PORT | jq -r .value.coins[4].amount)
+
+while true; do
+    # withdraw reward
+    echo -e "$WALLET_PWD" | $BIN_FILE tx distribution withdraw-rewards $OPERATOR --fees $TX_FEE$TOKEN --commission --chain-id $CHAIN_ID --from $WALLET_NAME --node ${RPC} -y
+
+    sleep 10
+
+    # check current balance
+    BALANCE=$($BIN_FILE q bank balances $SELF_ADDR -o json --node ${RPC} | jq -r '.balances[] | select(.denom == "rowan").amount')
     echo CURRENT BALANCE IS: $BALANCE
-    REWARD=$(( $BALANCE - 1000000 ))
 
-    if (( $BALANCE >  3000000 )); then
-        echo "Let's delegate $REWARD of REWARD tokens to $SELF_ADDR"
+    RESTAKE_AMOUNT=$(echo "$BALANCE - 1000000000000000000" | bc)
+
+    if (( $(bc <<< "$RESTAKE_AMOUNT >=  3000000000000000000") ));then
+        echo "Let's delegate $RESTAKE_AMOUNT of REWARD tokens to $SELF_ADDR"
         # delegate balance
-        $BIN_FILE tx staking delegate $OPERATOR "$REWARD"$DENOM --chain-id $CHAIN_ID --node tcp://localhost:$RPC_PORT --gas-adjustment 1.5 --gas="200000" --fees 7500$DENOM --from $WALLET_NAME -y
+        echo -e "$WALLET_PWD" | $BIN_FILE tx staking delegate $OPERATOR "$RESTAKE_AMOUNT"$TOKEN --fees $TX_FEE$TOKEN --chain-id $CHAIN_ID --from $WALLET_NAME --node ${RPC} -y
 
     else
-        echo "Reward is $REWARD"
+        echo "Reward is $RESTAKE_AMOUNT"
     fi
-    sleep 500
+    echo "DONE"
+    sleep 10800
 done
-echo "DONE"
