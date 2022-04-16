@@ -19,7 +19,7 @@ while true; do
     sleep 10
 
     # check current balance
-    BALANCE=$($BIN_FILE q bank balances $SELF_ADDR -o json --node ${RPC} | jq -r '.balances[] | select(.denom == \"$TOKEN\").amount')
+    BALANCE=$($BIN_FILE q bank balances $SELF_ADDR -o json --node ${RPC} | jq -r ".balances[] | select(.denom == \"$TOKEN\").amount")
     echo CURRENT BALANCE IS: $BALANCE
 
     RESTAKE_AMOUNT=$(echo "$BALANCE - 1000000000000000000" | bc)
